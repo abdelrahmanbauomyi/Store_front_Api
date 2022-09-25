@@ -1,0 +1,1 @@
+CREATE TABLE Order_Break_down(id SERIAL PRIMARY KEY,quantity INTEGER ,order_id BIGINT,product_id BIGINT,FOREIGN KEY (order_id) REFERENCES orders(id) ON delete RESTRICT,FOREIGN KEY(product_id) REFERENCES product(id)ON delete RESTRICT)

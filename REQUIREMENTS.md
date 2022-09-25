@@ -3,40 +3,45 @@ The company stakeholders want to create an online storefront to showcase their g
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
-## API Endpoints
+## API EndpointsS
 #### Products
-- Index 
-- Show
-- Create [token required]
+- Index :'Products/' [GET]
+- Show :'Products/id' [GET]
+- Create [token required] : 'Products/id' [POST]
 - [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- [OPTIONAL] Products by category (args: product category) : 'Products/:category' [GET]
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index [token required]: 'Users/' [GET]
+- Show [token required] : 'Users/:id' [GET]
+- Create N[token created] : 'Users/' [POST]
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+-Index : '/order' [GET]
+-Current Order by user (args: user id)[token required] : '/order/id' [GET]
+-get_Order_details (args : order id)  : '/order/products/id' [GET]
+- Create Order :'/order' [POST]
+-Add product to order (args: order id , product id ,quantity) : '/order/products' :[POST]
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+-  id :  SERIAL PRIMARY KEY
+- name :VARCHAR (50) 
+- price : decimal(15,4)
+- [OPTIONAL] category : VARCHAR(30)
 
 #### User
-- id
-- firstName
-- lastName
-- password
+- id :  SERIAL PRIMARY KEY
+- firstName : VARCHAR(50)
+- lastName : VARCHAR(50)
+- password :  VARCHAR(100) encrypted using bcrypt
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
-
+- id : SERIAL PRIMARY KEY
+- user_id : BIGINT
+- status of order (active or complete):VARCHAR(50)
+### orders
+- id:  SERIAL PRIMARY KEY
+- id of each product : BIGINT REFERENCES product(id)
+- order id : BIGINT REFERENCES orders(id)
+- quantity of each product in the order : INTEGER

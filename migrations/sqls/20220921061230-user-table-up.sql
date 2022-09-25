@@ -1,0 +1,1 @@
+CREATE TABLE user_table (id SERIAL PRIMARY KEY,fname VARCHAR(50),Lname VARCHAR(50),Password VARCHAR(100));
