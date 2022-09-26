@@ -4,7 +4,7 @@ import userRoutes from './Handlers/user.Handler';
 import productRoutes from './Handlers/product.Handler';
 import orderRoutes from './Handlers/order.Handler';
 const app: express.Application = express();
-const address = '0.0.0.0:3000';
+const address: number = process.env.BACK_END_PORT as unknown as number;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,8 +16,8 @@ userRoutes(app);
 productRoutes(app);
 orderRoutes(app);
 
-app.listen(3000, function () {
-  console.log(`starting app on: ${address}`);
+app.listen(address, function () {
+  console.log(`starting app on localhost: ${address}`);
 });
 
 export default app;

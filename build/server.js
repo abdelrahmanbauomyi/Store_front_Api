@@ -9,7 +9,7 @@ const user_Handler_1 = __importDefault(require("./Handlers/user.Handler"));
 const product_Handler_1 = __importDefault(require("./Handlers/product.Handler"));
 const order_Handler_1 = __importDefault(require("./Handlers/order.Handler"));
 const app = (0, express_1.default)();
-const address = '0.0.0.0:3000';
+const address = process.env.BACK_END_PORT;
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.get('/', function (req, res) {
@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 (0, user_Handler_1.default)(app);
 (0, product_Handler_1.default)(app);
 (0, order_Handler_1.default)(app);
-app.listen(3000, function () {
-    console.log(`starting app on: ${address}`);
+app.listen(address, function () {
+    console.log(`starting app on localhost: ${address}`);
 });
 exports.default = app;

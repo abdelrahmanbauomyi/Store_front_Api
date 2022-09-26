@@ -23,7 +23,10 @@ beforeAll(async () => {
     .post('/Products')
     .send(product_data)
     .set('Authorization', 'bearer ' + token); // a test for the post and the creation method in the product model model
-  response = await request.post('/order').send(order_data);
+  response = await request
+    .post('/order')
+    .send(order_data)
+    .set('Authorization', 'bearer ' + token);
   response = await request
     .post('/order/products')
     .send(order_details)

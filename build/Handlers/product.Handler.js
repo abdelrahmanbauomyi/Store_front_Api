@@ -7,13 +7,25 @@ const product_Model_1 = require("../Models/product.Model");
 const Auth_middelware_1 = __importDefault(require("./Auth.middelware"));
 const Options = new product_Model_1.product_Options();
 const index = async (req, res) => {
-    const listOfProducts = await Options.index();
-    res.json(listOfProducts);
+    try {
+        const listOfProducts = await Options.index();
+        res.json(listOfProducts);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const show = async (req, res) => {
-    const id = req.body.id;
-    const requested_Product = await Options.show(id);
-    res.json(requested_Product);
+    try {
+        const id = req.body.id;
+        const requested_Product = await Options.show(id);
+        res.json(requested_Product);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const create = async (req, res) => {
     try {
@@ -31,9 +43,15 @@ const create = async (req, res) => {
     }
 };
 const search_by_category = async (req, res) => {
-    const category = req.body.category;
-    const Products_By_Category = await Options.index_By_Category(category);
-    res.json(Products_By_Category);
+    try {
+        const category = req.body.category;
+        const Products_By_Category = await Options.index_By_Category(category);
+        res.json(Products_By_Category);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const productRoutes = (app) => {
     app.get('/Products', index);

@@ -5,14 +5,24 @@ import verifiy_Token from './Auth.middelware';
 
 const Options = new user_Options();
 const index = async (req: Request, res: Response) => {
-  const list_Of_Users = await Options.index();
-  res.json(list_Of_Users);
+  try {
+    const list_Of_Users = await Options.index();
+    res.json(list_Of_Users);
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
 };
 
 const show = async (req: Request, res: Response) => {
-  const id: string = req.body.id;
-  const required_User = await Options.show(id);
-  res.json(required_User);
+  try {
+    const id: string = req.body.id;
+    const required_User = await Options.show(id);
+    res.json(required_User);
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
 };
 
 const create = async (req: Request, res: Response) => {

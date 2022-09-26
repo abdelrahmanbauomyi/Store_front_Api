@@ -15,9 +15,14 @@ const index = async (req: Request, res: Response) => {
 };
 
 const show_user_orders = async (req: Request, res: Response) => {
-  const user_id = req.body.user_id;
-  const requested_Order = await Options.current_Order_By_User(user_id);
-  res.json(requested_Order);
+  try {
+    const user_id = req.body.user_id;
+    const requested_Order = await Options.current_Order_By_User(user_id);
+    res.json(requested_Order);
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
 };
 const create = async (req: Request, res: Response) => {
   try {
@@ -49,16 +54,21 @@ const add_Product_To_Order = async (req: Request, res: Response) => {
   }
 };
 const get_Order_details = async (req: Request, res: Response) => {
-  const order_id: number = req.body.order_id;
-  const requested_Order = await Options.Order_details(order_id);
-  res.json(requested_Order);
+  try {
+    const order_id: number = req.body.order_id;
+    const requested_Order = await Options.Order_details(order_id);
+    res.json(requested_Order);
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
 };
 
 const orderRoutes = (app: express.Application) => {
-  app.get('/order', index);
+  app.get('/order', verifiy_Token, index);
   app.get('/order/id', verifiy_Token, show_user_orders);
-  app.get('/order/products/id', get_Order_details);
-  app.post('/order', create);
+  app.get('/order/products/id', verifiy_Token, get_Order_details);
+  app.post('/order', verifiy_Token, create);
   app.post('/order/products', verifiy_Token, add_Product_To_Order);
 };
 export default orderRoutes;

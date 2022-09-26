@@ -17,9 +17,15 @@ const index = async (req, res) => {
     }
 };
 const show_user_orders = async (req, res) => {
-    const user_id = req.body.user_id;
-    const requested_Order = await Options.current_Order_By_User(user_id);
-    res.json(requested_Order);
+    try {
+        const user_id = req.body.user_id;
+        const requested_Order = await Options.current_Order_By_User(user_id);
+        res.json(requested_Order);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const create = async (req, res) => {
     try {
@@ -49,15 +55,21 @@ const add_Product_To_Order = async (req, res) => {
     }
 };
 const get_Order_details = async (req, res) => {
-    const order_id = req.body.order_id;
-    const requested_Order = await Options.Order_details(order_id);
-    res.json(requested_Order);
+    try {
+        const order_id = req.body.order_id;
+        const requested_Order = await Options.Order_details(order_id);
+        res.json(requested_Order);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const orderRoutes = (app) => {
-    app.get('/order', index);
+    app.get('/order', Auth_middelware_1.default, index);
     app.get('/order/id', Auth_middelware_1.default, show_user_orders);
-    app.get('/order/products/id', get_Order_details);
-    app.post('/order', create);
+    app.get('/order/products/id', Auth_middelware_1.default, get_Order_details);
+    app.post('/order', Auth_middelware_1.default, create);
     app.post('/order/products', Auth_middelware_1.default, add_Product_To_Order);
 };
 exports.default = orderRoutes;

@@ -20,7 +20,10 @@ describe('Order endpoints', () => {
         });
     });
     it('getting all orders should work', (done) => {
-        request.get('/order').then((res) => {
+        request
+            .get('/order')
+            .set('Authorization', 'bearer ' + endPoints_Spec_1.token)
+            .then((res) => {
             expect(res.status).toBe(200);
             done();
         });

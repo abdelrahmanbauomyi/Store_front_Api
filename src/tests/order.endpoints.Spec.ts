@@ -17,10 +17,13 @@ describe('Order endpoints', () => {
       });
   });
   it('getting all orders should work', (done) => {
-    request.get('/order').then((res) => {
-      expect(res.status).toBe(200);
-      done();
-    });
+    request
+      .get('/order')
+      .set('Authorization', 'bearer ' + token)
+      .then((res) => {
+        expect(res.status).toBe(200);
+        done();
+      });
   });
   it('getting order details should work', (done) => {
     const json = { order_id: '1' };

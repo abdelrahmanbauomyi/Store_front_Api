@@ -8,13 +8,25 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const Auth_middelware_1 = __importDefault(require("./Auth.middelware"));
 const Options = new user_Model_1.user_Options();
 const index = async (req, res) => {
-    const list_Of_Users = await Options.index();
-    res.json(list_Of_Users);
+    try {
+        const list_Of_Users = await Options.index();
+        res.json(list_Of_Users);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const show = async (req, res) => {
-    const id = req.body.id;
-    const required_User = await Options.show(id);
-    res.json(required_User);
+    try {
+        const id = req.body.id;
+        const required_User = await Options.show(id);
+        res.json(required_User);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const create = async (req, res) => {
     try {
