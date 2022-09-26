@@ -44,23 +44,4 @@ GRANT ALL PRIVILEGS ON DATABASE store_front_test TO postgres;
 
 
 ## Test the app
-- add a `database.json` file in the root directory and set the missing `###` parameters
-```
-{
-    "dev": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "store_front",
-      "user": "postgres",
-      "password": "postgres"
-    },
-    "test": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "store_front_test",
-      "user": "postgres",
-      "password": "postgres"
-    }
-  }
-```
 - `npm run test` to run all tests
