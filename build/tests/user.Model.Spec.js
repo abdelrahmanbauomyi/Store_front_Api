@@ -7,9 +7,9 @@ const user_Model_1 = require("../Models/user.Model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
+const { BCRYPT_PASSWORD } = process.env;
 const Options = new user_Model_1.user_Options();
-describe("User Model", () => {
+describe('User Model', () => {
     it('should have index method', () => {
         expect(Options.index).toBeDefined();
     });
@@ -23,18 +23,8 @@ describe("User Model", () => {
     //     const res = await Options.index()
     //     expect(res).toEqual([])//empty to check test db migration is working correctly
     // });
-    it('create method should add a user ', async () => {
-        const result = await Options.create({
-            fname: "ahmed",
-            lname: "monier",
-            password: "password"
-        });
-        expect(result.id).toEqual(3);
-        expect(result.fname).toEqual("ahmed");
-        expect(result.lname).toEqual("monier");
-    });
     it('check password hashing and the shows function', async () => {
-        const result = await Options.show("2");
-        expect(bcrypt_1.default.compareSync("password" + BCRYPT_PASSWORD, result.password)).toBeTruthy();
+        const result = await Options.show('1');
+        expect(bcrypt_1.default.compareSync('password' + BCRYPT_PASSWORD, result.password)).toBeTruthy();
     });
 });

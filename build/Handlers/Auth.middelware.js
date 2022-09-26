@@ -6,11 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const { TOKEN_SECRET } = process.env;
 const verifiy_Token = async (req, res, next) => {
     if (!req.headers.authorization) {
         res.status(401);
-        res.json("invalid token");
+        res.json('invalid token');
         return;
     }
     try {

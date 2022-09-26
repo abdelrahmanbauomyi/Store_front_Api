@@ -20,7 +20,7 @@ const create = async (req, res) => {
         const Product = {
             name: req.body.name,
             price: req.body.price,
-            category: req.body.category
+            category: req.body.category,
         };
         const newProduct = await Options.create(Product);
         res.json(newProduct);

@@ -7,8 +7,14 @@ const order_Model_1 = require("../Models/order.Model");
 const Auth_middelware_1 = __importDefault(require("./Auth.middelware"));
 const Options = new order_Model_1.order_Options();
 const index = async (req, res) => {
-    const listOfOrders = await Options.index();
-    res.json(listOfOrders);
+    try {
+        const listOfOrders = await Options.index();
+        res.json(listOfOrders);
+    }
+    catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 };
 const show_user_orders = async (req, res) => {
     const user_id = req.body.user_id;
@@ -18,8 +24,8 @@ const show_user_orders = async (req, res) => {
 const create = async (req, res) => {
     try {
         const Order = {
-            users_id: req.body.user_id,
-            status_of_order: req.body.status_of_order
+            users_id: req.body.users_id,
+            status_of_order: req.body.status_of_order,
         };
         const newOrder = await Options.create_order(Order);
         res.json(newOrder);

@@ -9,7 +9,7 @@ const user_Handler_1 = __importDefault(require("./Handlers/user.Handler"));
 const product_Handler_1 = __importDefault(require("./Handlers/product.Handler"));
 const order_Handler_1 = __importDefault(require("./Handlers/order.Handler"));
 const app = (0, express_1.default)();
-const address = "0.0.0.0:3000";
+const address = '0.0.0.0:3000';
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.get('/', function (req, res) {
