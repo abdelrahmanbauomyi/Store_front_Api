@@ -6,7 +6,7 @@ A RESTful API for an E-Commerce website with full CRUD operations ,Authenticatio
 ---
 
 # Getting Started
-
+`you need to have psql/postgresSQL , Node.js ,NPM configured in your environment  `
 1. clone the repo.
 2. [set up the .env file](#prepare-env) 
 3. [set up the database locally](#database-set-up)
