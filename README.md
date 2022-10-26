@@ -14,7 +14,7 @@ A RESTful API for an E-Commerce website with full CRUD operations ,Authenticatio
 5. [start the app](#start-the-app)
 6. [Test the app](#test-the-app)
 ## Prepare env
-- add a `.env` file in the root directory and set the missing  environment parameters
+- add a `.env` file in the root directory of the project and set the missing  environment parameters
 ```
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=store_front
